@@ -26,3 +26,7 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 /Dockerfile.dev
+
+# Claude Code / OMC agent artifacts
+.omc/
+.claude/
