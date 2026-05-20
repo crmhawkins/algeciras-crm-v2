@@ -33,6 +33,14 @@ php artisan migrate --force --no-interaction || echo "Migration failed - continu
 echo "Running base seeders..."
 php artisan db:seed --force --no-interaction || echo "Seeder failed - continuing anyway"
 
+# Filament Shield - generate policies + permissions for all resources (idempotent)
+echo "Generating Filament Shield policies..."
+php artisan shield:generate --all --panel=admin --no-interaction || echo "Shield generate skipped - continuing anyway"
+
+# Assign all permissions to super-admin role
+echo "Syncing super-admin permissions..."
+php artisan shield:super-admin --user=1 --no-interaction || echo "Super-admin sync skipped"
+
 # Storage symlink
 php artisan storage:link --force || true
 

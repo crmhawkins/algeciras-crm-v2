@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Filament\Resources\MetodosPago\Pages;
+
+use App\Filament\Resources\MetodosPago\MetodoPagoResource;
+use Filament\Actions\CreateAction;
+use Filament\Resources\Pages\ListRecords;
+
+class ListMetodosPago extends ListRecords
+{
+    protected static string $resource = MetodoPagoResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [CreateAction::make()->label('Nuevo método')];
+    }
+}
