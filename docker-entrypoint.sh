@@ -29,6 +29,10 @@ php artisan view:clear || true
 echo "Running migrations..."
 php artisan migrate --force --no-interaction || echo "Migration failed - continuing anyway"
 
+# Seed base data (idempotent via updateOrCreate / firstOrCreate)
+echo "Running base seeders..."
+php artisan db:seed --force --no-interaction || echo "Seeder failed - continuing anyway"
+
 # Storage symlink
 php artisan storage:link --force || true
 

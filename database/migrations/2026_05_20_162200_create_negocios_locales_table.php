@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('negocios_locales', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->text('descripcion')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('web')->nullable();
+            $table->string('categoria')->nullable();
+            $table->boolean('activo')->default(true);
+            $table->timestamps();
+
+            $table->index('categoria');
+            $table->index('activo');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('negocios_locales');
+    }
+};
