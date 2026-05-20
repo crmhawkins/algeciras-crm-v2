@@ -29,6 +29,9 @@ RUN chown -R www-data:www-data /var/www/html \
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf \
  && printf '<Directory /var/www/html/public>\n    AllowOverride All\n    Require all granted\n</Directory>\n' >> /etc/apache2/apache2.conf
 
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
